@@ -1,10 +1,7 @@
 package game;
 
 import city.cs.engine.UserView;
-import game.layout.BottomMenu;
-import game.layout.GameView;
-import game.layout.MainMenu;
-import game.layout.OptionsMenu;
+import game.layout.*;
 import game.level.*;
 import game.controller.BoardController;
 import game.model.Options;
@@ -40,6 +37,8 @@ public class Game {
 
     private MainMenu mainMenu;
 
+    private HighScores highScores;
+
     private Stats stats;
 
     private Options options;
@@ -59,7 +58,6 @@ public class Game {
     public Game() {
         // Setup scores
         stats = new Stats();
-
         options = new Options();
 
         try {
@@ -75,6 +73,8 @@ public class Game {
         mainMenu = new MainMenu(this);
         mainMenu.setPreferredSize(new Dimension(600, 600));
         frame.add(mainMenu, BorderLayout.CENTER);
+
+        highScores = new HighScores(this);
 
         // Setup options menu
         optionsMenu = new OptionsMenu(this);
@@ -213,5 +213,9 @@ public class Game {
 
     public Options getOptions() {
         return options;
+    }
+
+    public HighScores getHighScores() {
+        return highScores;
     }
 }

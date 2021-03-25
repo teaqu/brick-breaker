@@ -1,6 +1,7 @@
 package game.layout;
 
 import game.Game;
+import game.action.HighScoresAction;
 import game.action.OptionsAction;
 import game.action.PlayAction;
 
@@ -13,11 +14,14 @@ public class MainMenu extends JPanel {
 
     private JButton play;
     private JButton options;
+    private JButton highScores;
+
 
     public MainMenu(Game game) {
         background = new ImageIcon("data/images/background.png").getImage();
         play = new JButton("PLAY");
         options = new JButton("OPTIONS");
+        highScores = new JButton("HIGH SCORES");
 
         // Vertical alignment
         // https://stackoverflow.com/a/22933763/2047666
@@ -32,8 +36,10 @@ public class MainMenu extends JPanel {
         // Add buttons
         add(play, gbc);
         add(options, gbc);
+        add(highScores, gbc);
         play.addActionListener(new PlayAction(game));
         options.addActionListener(new OptionsAction(game));
+        highScores.addActionListener(new HighScoresAction(game));
     }
 
     @Override
