@@ -14,6 +14,9 @@
 #### Explosion
   - Author: Retimer
   - Link: https://opengameart.org/content/wgstudio-explosion-animation
+#### Glacial Mountains Background
+  - Author: vnitti
+  - Link: https://vnitti.itch.io/glacial-mountains-parallax-background
 ### Music
   - Author: BoxCat_Games
   - Link: https://freemusicarchive.org/music/BoxCat_Games

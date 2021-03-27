@@ -8,17 +8,14 @@ import game.action.PlayAction;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainMenu extends JPanel {
-
-    private Image background;
+public class MainMenu extends ImagePanel {
 
     private JButton play;
     private JButton options;
     private JButton highScores;
 
-
     public MainMenu(Game game) {
-        background = new ImageIcon("data/images/background.png").getImage();
+        super("data/images/background.png");
         play = new JButton("PLAY");
         options = new JButton("OPTIONS");
         highScores = new JButton("HIGH SCORES");
@@ -42,9 +39,4 @@ public class MainMenu extends JPanel {
         highScores.addActionListener(new HighScoresAction(game));
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(background, 0, 0, this);
-    }
 }
