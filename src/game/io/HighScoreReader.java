@@ -3,6 +3,7 @@ package game.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HighScoreReader {
     private String fileName;
@@ -11,7 +12,7 @@ public class HighScoreReader {
         this.fileName = fileName;
     }
 
-    public void readScores() throws IOException {
+    public Object[][] readScores() throws IOException {
         FileReader fr = null;
         BufferedReader reader = null;
         try {
@@ -19,15 +20,13 @@ public class HighScoreReader {
             fr = new FileReader(fileName);
             reader = new BufferedReader(fr);
             String line = reader.readLine();
+            ArrayList<String[]> data = new ArrayList<>();
             while (line != null) {
                 // file is assumed to contain one name, score pair per line
-                String[] tokens = line.split(",");
-                String name = tokens[0];
-                int score = Integer.parseInt(tokens[1]);
-                System.out.println("Name: " + name + ", Score: " + score);
+                data.add(line.split(","));
                 line = reader.readLine();
             }
-            System.out.println("...done.");
+            return data.toArray(new Object[data.size()][]);
         } finally {
             if (reader != null) {
                 reader.close();
