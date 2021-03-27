@@ -1,5 +1,6 @@
 package game.action;
 
+import game.Game;
 import game.level.GameLevel;
 
 import java.awt.event.ActionEvent;
@@ -7,13 +8,16 @@ import java.awt.event.ActionListener;
 
 public class RestartAction implements ActionListener {
 
-    GameLevel level;
+    Game game;
 
-    public RestartAction(GameLevel level) {
-        this.level = level;
+    public RestartAction(Game game) {
+        this.game = game;
     }
 
     public void actionPerformed(ActionEvent e) {
-        this.level.getGame().restartLevel(level);
+        game.restartLevel(game.getLevel());
+        if (game.getOptionsFrame().isVisible()) {
+            game.swapFrames();
+        }
     }
 }

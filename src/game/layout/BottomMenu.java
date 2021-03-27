@@ -17,9 +17,6 @@ public class BottomMenu implements ChangeListener {
     private JLabel livesStat;
     private JLabel levelStat;
     private JLabel remainingStat;
-    private JButton pauseButton;
-    private JButton quitButton;
-    private JButton restartButton;
     private GameLevel level;
 
     public BottomMenu(GameLevel level, Stats stats) {
@@ -37,13 +34,6 @@ public class BottomMenu implements ChangeListener {
         livesStat = new JLabel(stats.getHearts());
         levelStat = new JLabel(String.valueOf(stats.getLevel()));
         remainingStat = new JLabel(String.valueOf(stats.getRemaining()));
-
-        quitButton = new JButton("Quit");
-        pauseButton = new JButton("Pause");
-        restartButton = new JButton("Restart");
-        restartButton.addActionListener(new RestartAction(level));
-        pauseButton.addActionListener(new PauseAction(level));
-        quitButton.addActionListener(new QuitAction());
     }
 
     @Override

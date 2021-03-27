@@ -149,10 +149,17 @@ public abstract class GameLevel extends World {
         }
     }
 
+    public void resume() {
+        super.start();
+        if (music != null) {
+            music.resume();
+        }
+    }
+
     public void stop() {
         super.stop();
         if (music != null) {
-            music.stop();
+            music.pause();
         }
     }
 

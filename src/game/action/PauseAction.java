@@ -18,7 +18,7 @@ public class PauseAction implements ActionListener {
         if (status) {
             this.level.stop();
         } else {
-            this.level.start();
+            this.level.resume();
         }
         status = ! status;
     }

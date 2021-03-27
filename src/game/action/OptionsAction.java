@@ -14,7 +14,6 @@ public class OptionsAction implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        game.resetFrame();
-        game.getFrame().add(game.getOptionsMenu());
+      game.swapFrames();
     }
 }

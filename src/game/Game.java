@@ -1,6 +1,7 @@
 package game;
 
 import city.cs.engine.UserView;
+import game.controller.GameController;
 import game.layout.*;
 import game.level.*;
 import game.controller.BoardController;
@@ -47,10 +48,13 @@ public class Game {
 
     private BoardController boardController;
 
+    private GameController gameController;
+
     /**
      * Add the view to a frame (Java top level window)
      */
     private JFrame frame;
+    private JFrame optionsFrame;
 
     /**
      * Initialise a new Game.
@@ -79,14 +83,21 @@ public class Game {
         // Setup options menu
         optionsMenu = new OptionsMenu(this);
 
+        optionsFrame = new JFrame("Basic world");
+        optionsMenu.setPreferredSize(new Dimension(600, 600));
+        optionsFrame.add(getOptionsMenu());
+
+        // Setup frames
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
-        // don't let the frame be resized
         frame.setResizable(false);
-        // size the frame to fit the world view
         frame.pack();
-        // finally, make the frame visible
         frame.setVisible(true);
+        optionsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        optionsFrame.setLocation(frame.getLocation());
+        optionsFrame.setResizable(false);
+        optionsFrame.pack();
+        optionsFrame.setVisible(false);
     }
 
     public void goToNextLevel(){
@@ -186,6 +197,9 @@ public class Game {
         boardController = new BoardController(level.getBoard());
         gameView.addKeyListener(boardController);
 
+        gameController = new GameController(this);
+        gameView.addKeyListener(gameController);
+
         gameView.addMouseListener(new GiveFocus(gameView));
 
         // add the view to a frame (Java top level window)
@@ -205,11 +219,19 @@ public class Game {
         return frame;
     }
 
-    public void resetFrame() {
+    private void resetFrame(JFrame frame) {
         frame.getContentPane().removeAll();
         frame.getContentPane().invalidate();
         frame.getContentPane().revalidate();
         frame.repaint();
+    }
+
+    public void resetFrame() {
+        resetFrame(frame);
+    }
+
+    public void resetOptionsFrame() {
+        resetFrame(optionsFrame);
     }
 
     public MainMenu getMainMenu() {
@@ -226,5 +248,23 @@ public class Game {
 
     public HighScores getHighScores() {
         return highScores;
+    }
+
+    public JFrame getOptionsFrame() {
+        return optionsFrame;
+    }
+
+    public void swapFrames() {
+        if (frame.isVisible()) {
+            optionsFrame.setLocation(frame.getLocation());
+            resetOptionsFrame();
+            optionsFrame.add(new OptionsMenu(this));
+            optionsFrame.setVisible(true);
+            frame.setVisible(false);
+        } else {
+            frame.setLocation(optionsFrame.getLocation());
+            frame.setVisible(true);
+            optionsFrame.setVisible(false);
+        }
     }
 }
