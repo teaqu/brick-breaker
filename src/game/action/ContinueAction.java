@@ -33,9 +33,11 @@ public class ContinueAction implements ActionListener {
         // We create a new highscores with new data
         // Updating the JTable is difficult so easier to create new panel
         game.setHighScores(new HighScores(game));
-
         game.resetFrame();
         game.getFrame().add(game.getHighScores().getMainPanel());
+
+        // Clear the game
+        game.reset();
     }
 
 }

@@ -107,8 +107,7 @@ public class Game {
         } else if (level instanceof Level5) {
             changeLevel(new Level6(this));
         } else {
-            System.out.println("Well done! Game complete.");
-            System.exit(0);
+            gameOver(true);
         }
     }
 
@@ -123,15 +122,23 @@ public class Game {
             changeLevel(new Level2(this));
         } else if (level instanceof Level3) {
             changeLevel(new Level3(this));
-        } else {
+        } else if (level instanceof Level4) {
             changeLevel(new Level4(this));
+        } else if (level instanceof Level5) {
+            changeLevel(new Level5(this));
+        } else {
+            changeLevel(new Level6(this));
         }
     }
 
     public void gameOver() {
+       gameOver(false);
+    }
+
+    public void gameOver(boolean complete) {
         resetFrame();
         getLevel().stop();
-        EndGame endGame = new EndGame(this);
+        EndGame endGame = new EndGame(this, complete);
         frame.add(endGame.getMainPanel());
     }
 
@@ -240,5 +247,10 @@ public class Game {
             frame.setVisible(true);
             optionsFrame.setVisible(false);
         }
+    }
+
+    public void reset() {
+        this.level = null;
+        this.stats = new Stats();
     }
 }

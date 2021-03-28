@@ -14,11 +14,18 @@ public class EndGame {
     private JLabel levelLabel;
     private JLabel scoreStat;
     private JLabel levelStat;
-
+    private JLabel title;
+    private boolean complete = false;
     private Game game;
 
     public EndGame(Game game) {
         this.game = game;
+    }
+
+    public EndGame(Game game, boolean complete) {
+        this(game);
+        this.complete = complete;
+        title.setText("GAME " + (complete ? "COMPLETE" : "OVER"));
     }
 
     private void createUIComponents() {
@@ -28,6 +35,7 @@ public class EndGame {
         levelStat = new JLabel(String.valueOf(stats.getLevel()));
         ContinueAction continueAction = new ContinueAction(game, this);
         continueButton.addActionListener(continueAction);
+        title = new JLabel("GAME" + (complete ? "COMPLETE" : "OVER"));
     }
 
     public JPanel getMainPanel() {
