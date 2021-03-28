@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class ImagePanel extends JPanel {
 
-    private final Image background;
+    private Image background;
 
     public ImagePanel(String filename) {
         background = new ImageIcon(filename).getImage();
@@ -15,5 +15,9 @@ public class ImagePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
+    }
+
+    public void setBackground(Image bg) {
+        background = bg;
     }
 }

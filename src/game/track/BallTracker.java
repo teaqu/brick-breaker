@@ -21,6 +21,6 @@ public class BallTracker extends Listener implements StepListener {
         // We only follow the ball in y and when above y + 10 which is out of
         // the view
         float position = Math.max(0, ball.getPosition().y - 10);
-        getView().setCentre(new Vec2(getView().getX(), position));
+        getGameView().setCentre(new Vec2(getGameView().getX(), position));
     }
 }

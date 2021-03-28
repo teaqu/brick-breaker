@@ -5,9 +5,13 @@ import game.model.body.Brick;
 import game.destruction.BrickDestruction;
 import org.jbox2d.common.Vec2;
 
+import javax.swing.*;
+
 public class Level2 extends GameLevel {
+
     public Level2(Game game){
         super(game);
+        setBackground(new ImageIcon("data/images/background2.png").getImage());
         genWalls();
         setMusic("music/rolling.mp3");
 

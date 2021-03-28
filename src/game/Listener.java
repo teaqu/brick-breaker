@@ -23,7 +23,7 @@ public class Listener {
         return level.getStats();
     }
 
-    public GameView getView() {
-        return level.getView();
+    public GameView getGameView() {
+        return level.getGameView();
     }
 }

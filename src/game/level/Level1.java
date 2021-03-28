@@ -5,10 +5,13 @@ import game.model.body.Brick;
 import game.destruction.BrickDestruction;
 import org.jbox2d.common.Vec2;
 
+import java.awt.*;
+
 public class Level1 extends GameLevel {
 
     public Level1(Game game){
         super(game);
+        setTextColour(new Color(233, 228, 228));
         genWalls();
         setMusic("music/young_love.mp3");
 

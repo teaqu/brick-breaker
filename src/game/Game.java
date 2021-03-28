@@ -1,6 +1,5 @@
 package game;
 
-import city.cs.engine.UserView;
 import game.controller.GameController;
 import game.layout.*;
 import game.level.*;
@@ -27,12 +26,11 @@ public class Game {
      */
     private GameLevel level;
 
+
     /**
      * A graphical display of the world (a specialised JPanel).
      */
-    private GameView gameView;
-
-    private UserView userView;
+    private GameLayout gameLayout;
 
     private OptionsMenu optionsMenu;
 
@@ -45,10 +43,6 @@ public class Game {
     private Options options;
 
     private SoundClip levelComplete;
-
-    private BoardController boardController;
-
-    private GameController gameController;
 
     /**
      * Add the view to a frame (Java top level window)
@@ -159,18 +153,15 @@ public class Game {
         return level;
     }
 
-    public GameView getView() {
-        return gameView;
+    public GameLayout getLayout() {
+        return gameLayout;
     }
 
     private void changeLevel(GameLevel newLevel) {
         level.stop();
         level = newLevel;
-        boardController.updateBoard(level.getBoard());
         //level now refer to the new level
-        gameView.setWorld(level);
-        userView.setWorld(level);
-        userView.setZoom(3);
+        gameLayout.changeLevel(level);
         level.start();
 
         // uncomment this to make a debugging view
@@ -179,38 +170,11 @@ public class Game {
 
     public void start() {
         resetFrame();
-
         level = new Level1(this);
-        userView = new UserView(level, 100, 100);
-
-        // make a view
-        gameView = new GameView(level, 500, 500);
-        gameView.setZoom(20);
-
-        // uncomment this to draw a 1-metre grid over the view
-        // view.setGridResolution(1);
-
-        // add some mouse actions
-        // add this to the view, so coordinates are relative to the view
-        gameView.addMouseListener(new MouseHandler(level, gameView));
-
-        boardController = new BoardController(level.getBoard());
-        gameView.addKeyListener(boardController);
-
-        gameController = new GameController(this);
-        gameView.addKeyListener(gameController);
-
-        gameView.addMouseListener(new GiveFocus(gameView));
+        gameLayout = new GameLayout(level);
 
         // add the view to a frame (Java top level window)
-        frame.add(gameView);
-
-        userView = new UserView(level, 100, 100);
-        userView.setZoom(3);
-        frame.add(userView, BorderLayout.EAST);
-
-        BottomMenu sideMenu = new BottomMenu(level, this.getStats());
-        frame.add(sideMenu.getMainPanel(), BorderLayout.SOUTH);
+        frame.add(gameLayout);
 
         level.start();
     }

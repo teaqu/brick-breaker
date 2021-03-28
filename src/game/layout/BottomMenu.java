@@ -9,6 +9,7 @@ import game.model.Stats;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class BottomMenu implements ChangeListener {
     private final Stats stats;
@@ -17,12 +18,17 @@ public class BottomMenu implements ChangeListener {
     private JLabel livesStat;
     private JLabel levelStat;
     private JLabel remainingStat;
+    private JLabel scoreLabel;
+    private JLabel livesLabel;
+    private JLabel levelLabel;
+    private JLabel remainingLabel;
     private GameLevel level;
 
     public BottomMenu(GameLevel level, Stats stats) {
         this.level = level;
         this.stats = stats;
         stats.addChangeListener(this);
+        mainPanel.setOpaque(false);
     }
 
     public JPanel getMainPanel() {
@@ -42,6 +48,18 @@ public class BottomMenu implements ChangeListener {
         livesStat.setText(stats.getHearts());
         levelStat.setText(String.valueOf(stats.getLevel()));
         remainingStat.setText(String.valueOf(stats.getRemaining()));
+        mainPanel.repaint();
+    }
+
+    public void setTextColour(Color colour) {
+        scoreStat.setForeground(colour);
+        levelStat.setForeground(colour);
+        remainingStat.setForeground(colour);
+        scoreLabel.setForeground(colour);
+        livesLabel.setForeground(colour);
+        levelLabel.setForeground(colour);
+        scoreStat.setForeground(colour);
+        remainingLabel.setForeground(colour);
     }
 
 }

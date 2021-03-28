@@ -16,6 +16,7 @@ import game.sound.SoundClip;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ public abstract class GameLevel extends World {
     private Board board;
     private List<Ball> balls;
     private SoundClip music;
+    private Image background;
+    private Color textColour = new Color(0);
 
     /**
      * These bodies need to be destroyed for the level to complete.
@@ -138,8 +141,8 @@ public abstract class GameLevel extends World {
         return game.getStats();
     }
 
-    public GameView getView() {
-        return game.getView();
+    public GameView getGameView() {
+        return game.getLayout().getGameView();
     }
 
     public void start() {
@@ -169,5 +172,21 @@ public abstract class GameLevel extends World {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             System.out.println(e);
         }
+    }
+
+    public Image getBackground() {
+        return background;
+    }
+
+    public void setBackground(Image background) {
+        this.background = background;
+    }
+
+    public Color getTextColour() {
+        return textColour;
+    }
+
+    public void setTextColour(Color textColour) {
+        this.textColour = textColour;
     }
 }
