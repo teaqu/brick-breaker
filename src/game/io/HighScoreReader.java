@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class HighScoreReader {
     private String fileName;
@@ -26,6 +28,8 @@ public class HighScoreReader {
                 data.add(line.split(","));
                 line = reader.readLine();
             }
+            // Sort by score
+            data.sort(Comparator.comparing(o -> o[1]));
             return data.toArray(new Object[data.size()][]);
         } finally {
             if (reader != null) {

@@ -1,2 +1,2 @@
-calum,100
-bill,55
+Bill,55
+Calum,105
