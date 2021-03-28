@@ -1,8 +1,5 @@
 package game.layout;
 
-import game.action.PauseAction;
-import game.action.QuitAction;
-import game.action.RestartAction;
 import game.level.GameLevel;
 import game.model.Stats;
 
@@ -11,6 +8,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 
+/**
+ * This shows below the main menu
+ */
 public class BottomMenu implements ChangeListener {
     private final Stats stats;
     private JPanel mainPanel;

@@ -5,6 +5,9 @@ import game.Game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Show the options page
+ */
 public class OptionsAction implements ActionListener {
 
     Game game;

@@ -5,9 +5,16 @@ import game.level.GameLevel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Pause the game.
+ */
 public class PauseAction implements ActionListener {
 
     GameLevel level;
+
+    /**
+     * Used to track pause / resume status.
+     */
     boolean status = false;
 
     public PauseAction(GameLevel level) {

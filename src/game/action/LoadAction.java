@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Load the saved game.
+ */
 public class LoadAction implements ActionListener {
 
     Game game;
@@ -18,8 +21,10 @@ public class LoadAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         GameSaverLoader gameSaverLoader = new GameSaverLoader();
         try {
-           gameSaverLoader.load(game, "data/save.txt");
+            // Load game from save
+            gameSaverLoader.load(game, "data/save.txt");
 
+           // Show level if we're on the options page
            if (game.getOptionsFrame().isVisible()) {
                game.swapFrames();
            }

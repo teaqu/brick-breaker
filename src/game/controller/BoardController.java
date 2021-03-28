@@ -5,6 +5,9 @@ import game.model.body.Board;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Control the board (player)
+ */
 public class BoardController implements KeyListener {
 
     private Board board;
@@ -24,10 +27,11 @@ public class BoardController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
-        // other key commands omitted
+        // Move left on a
         if (code == KeyEvent.VK_A) {
             board.left = true;
         } else if (code == KeyEvent.VK_D) {
+            // Move right on d
             board.right = true;
         }
     }
@@ -36,8 +40,10 @@ public class BoardController implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_A) {
+            // Stop moving left
             board.left = false;
         } else if (code == KeyEvent.VK_D) {
+            // Stop moving right
             board.right = false;
         }
     }

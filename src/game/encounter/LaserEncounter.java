@@ -8,7 +8,7 @@ import game.model.body.Laser;
 import game.level.GameLevel;
 
 /**
- * Laser below the board that destroys balls and creatures.
+ * Laser below the board that destroys anything it comes into contact with
  */
 public class LaserEncounter extends Listener implements CollisionListener {
 
@@ -22,9 +22,11 @@ public class LaserEncounter extends Listener implements CollisionListener {
     @Override
     public void collide(CollisionEvent e) {
         if (e.getOtherBody() instanceof Ball) {
-            // Reduce lives
+            // Reduce lives if in contact with ball
             int lives = getStats().getLives();
             getStats().setLives(--lives);
+
+            // Game over if no lives left
             if (lives < 1) {
                 getGame().gameOver();
                 return;
@@ -33,6 +35,8 @@ public class LaserEncounter extends Listener implements CollisionListener {
             // Put new ball on map
             getLevel().newBall();
         }
+
+        // Destroy anything else and remove from the level
         getLevel().removeConsumableBody(e.getOtherBody());
         e.getOtherBody().destroy();
     }

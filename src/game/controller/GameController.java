@@ -1,12 +1,13 @@
 package game.controller;
 
 import game.Game;
-import game.layout.OptionsMenu;
 
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Listen to game keyboard events.
+ */
 public class GameController implements KeyListener {
 
     private Game game;
@@ -27,6 +28,7 @@ public class GameController implements KeyListener {
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_ESCAPE) {
+            // Show options menu on ESC
             this.game.getLevel().stop();
             game.swapFrames();
             game.getOptionsFrame().setVisible(true);

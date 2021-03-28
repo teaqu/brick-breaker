@@ -17,6 +17,9 @@
 #### Glacial Mountains Background
   - Author: vnitti
   - Link: https://vnitti.itch.io/glacial-mountains-parallax-background
+#### Grassy Mountains: Parallax Background
+- Author: vnitti
+- Link: https://vnitti.itch.io/grassy-mountains-parallax-background
 ### Music
   - Author: BoxCat_Games
   - Link: https://freemusicarchive.org/music/BoxCat_Games

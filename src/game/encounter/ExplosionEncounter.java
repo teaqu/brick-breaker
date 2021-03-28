@@ -9,6 +9,10 @@ import game.model.body.Brick;
 import game.model.body.Monster;
 import game.model.body.TNTExplosion;
 
+/**
+ * Destroy anything in contact with the explosion.
+ * Explosions are caused by TNT going off.
+ */
 public class ExplosionEncounter extends Listener implements CollisionListener {
 
     private TNTExplosion explosion;
@@ -21,6 +25,7 @@ public class ExplosionEncounter extends Listener implements CollisionListener {
     @Override
     public void collide(CollisionEvent e) {
 
+        // Destroy birds, bricks and monsters
         if (e.getOtherBody() instanceof Bird) {
             e.getOtherBody().destroy();
         } else if (e.getOtherBody() instanceof Brick) {

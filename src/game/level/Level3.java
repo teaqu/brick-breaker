@@ -8,9 +8,12 @@ import game.encounter.BirdEncounter;
 import game.track.BirdTracker;
 import org.jbox2d.common.Vec2;
 
+import javax.swing.*;
+
 public class Level3 extends GameLevel {
     public Level3(Game game){
         super(game);
+        setBackground(new ImageIcon("data/images/background2.png").getImage());
         genWallsTall();
         setMusic("music/inspiration.mp3");
 

@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/**
+ * Change the volume when the volume sliders are changed
+ */
 public class VolumeChange implements ChangeListener {
 
     private final Game game;
@@ -28,8 +31,10 @@ public class VolumeChange implements ChangeListener {
     public void stateChanged(ChangeEvent e) {
         JSlider volumeSlider = (JSlider) e.getSource();
         if (music) {
+            // Change music volume
             game.getOptions().setMusicVolume(volumeSlider.getValue());
         } else {
+            // Change sounds volume
             game.getOptions().setSoundsVolume(volumeSlider.getValue());
         }
     }

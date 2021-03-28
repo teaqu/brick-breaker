@@ -2,13 +2,14 @@ package game.action;
 
 import game.Game;
 import game.io.GameSaverLoader;
-import game.io.HighScoreWriter;
-import game.layout.HighScores;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Save the game
+ */
 public class SaveAction implements ActionListener {
 
     Game game;

@@ -6,6 +6,9 @@ import game.model.Stats;
 
 import javax.swing.*;
 
+/**
+ * This shows at the end of a game
+ */
 public class EndGame {
     private JPanel mainPanel;
     private JTextField name;
@@ -31,8 +34,12 @@ public class EndGame {
     private void createUIComponents() {
         continueButton = new JButton("CONTINUE");
         Stats stats = game.getStats();
+
+        // Show stats
         scoreStat = new JLabel(String.valueOf(stats.getScore()));
         levelStat = new JLabel(String.valueOf(stats.getLevel()));
+
+        // Continue and save new highscore
         ContinueAction continueAction = new ContinueAction(game, this);
         continueButton.addActionListener(continueAction);
         title = new JLabel("GAME" + (complete ? "COMPLETE" : "OVER"));

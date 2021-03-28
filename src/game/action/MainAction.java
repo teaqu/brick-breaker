@@ -1,12 +1,14 @@
 package game.action;
 
 import game.Game;
-import game.layout.OptionsMenu;
+import game.layout.MainMenu;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Show the main menu
+ */
 public class MainAction implements ActionListener {
 
     Game game;
@@ -16,10 +18,16 @@ public class MainAction implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        game.getFrame().setVisible(true);
-        game.getFrame().setLocation(game.getOptionsFrame().getLocation());
+        // Set game frame to main menu
         game.resetFrame();
-        game.getFrame().add(game.getMainMenu());
-        game.getOptionsFrame().setVisible(false);
+        game.getFrame().add(new MainMenu(game));
+
+        // Get out of options menu
+        if (game.getOptionsFrame().isVisible()) {
+            game.swapFrames();
+        }
+
+        // Clear game so we can start again
+        game.reset();
     }
 }

@@ -4,7 +4,7 @@ public class Stats extends Model {
     private int score = 0;
     private int level = 1;
     private int remaining = 0;
-    private int lives = 1;
+    private int lives = 3;
 
     public void setScore(int score) {
         this.score = score;

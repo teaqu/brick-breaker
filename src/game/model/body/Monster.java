@@ -62,6 +62,11 @@ public class Monster extends Walker implements Direction {
         return monsterLevel;
     }
 
+    /**
+     * Change the monster image on a level change
+     *
+     * @param monsterLevel
+     */
     public void setMonsterLevel(float monsterLevel) {
         removeAllImages();
         if (monsterLevel > 0) {
@@ -77,6 +82,8 @@ public class Monster extends Walker implements Direction {
     public void damage() {
         setMonsterLevel(monsterLevel - 1);
         monsterSound.play();
+
+        // Kill the monster if it's level is too low
         if (monsterLevel < 0) {
             kill();
         }
@@ -91,6 +98,9 @@ public class Monster extends Walker implements Direction {
         this.startWalking(this.direction);
     }
 
+    /**
+     * Make the monster fall down and stop it colliding with anything except walls.
+     */
     public void kill() {
         removeAllImages();
         addImage(deadImage);

@@ -1,13 +1,9 @@
 package game;
 
-import game.controller.GameController;
 import game.layout.*;
 import game.level.*;
-import game.controller.BoardController;
 import game.model.Options;
-import game.mouse.GiveFocus;
 import game.model.Stats;
-import game.mouse.MouseHandler;
 import game.sound.SoundClip;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -33,10 +29,6 @@ public class Game {
     private GameLayout gameLayout;
 
     private OptionsMenu optionsMenu;
-
-    private MainMenu mainMenu;
-
-    private HighScores highScores;
 
     private Stats stats;
 
@@ -68,11 +60,9 @@ public class Game {
         // when the x button is pressed
         frame = new JFrame("Basic world");
 
-        mainMenu = new MainMenu(this);
+        MainMenu mainMenu = new MainMenu(this);
         mainMenu.setPreferredSize(new Dimension(600, 600));
         frame.add(mainMenu, BorderLayout.CENTER);
-
-        highScores = new HighScores(this);
 
         // Setup options menu
         optionsMenu = new OptionsMenu(this);
@@ -206,24 +196,12 @@ public class Game {
         resetFrame(optionsFrame);
     }
 
-    public MainMenu getMainMenu() {
-        return mainMenu;
-    }
-
     public OptionsMenu getOptionsMenu() {
         return optionsMenu;
     }
 
     public Options getOptions() {
         return options;
-    }
-
-    public HighScores getHighScores() {
-        return highScores;
-    }
-
-    public void setHighScores(HighScores highScores) {
-        this.highScores = highScores;
     }
 
     public JFrame getOptionsFrame() {

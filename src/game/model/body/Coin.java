@@ -14,7 +14,10 @@ public class Coin extends DynamicBody {
     public Coin(GameLevel level) {
         super(level, coinShape);
         addImage(image);
+
+        // So coins will only collide with lasers and the board
         getFixtureList().get(0).destroy();
+        
         Sensor sensor = new Sensor(this, coinShape);
         sensor.addSensorListener(new CoinSensor(level, this));
     }

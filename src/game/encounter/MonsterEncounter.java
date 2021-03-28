@@ -5,6 +5,9 @@ import game.Listener;
 import game.model.body.Monster;
 import game.level.GameLevel;
 
+/**
+ * The monster hit something.
+ */
 public class MonsterEncounter extends Listener implements CollisionListener {
 
     Monster monster;
@@ -16,6 +19,7 @@ public class MonsterEncounter extends Listener implements CollisionListener {
 
     @Override
     public void collide(CollisionEvent e) {
+        // Change direction
         monster.changeDirection();
     }
 }

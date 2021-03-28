@@ -31,6 +31,7 @@ public class TNT {
         state = State.STABLE;
         body = new TNTBody(level, this);
 
+        // when hitting the box
         if (boxSound == null) {
             try {
                 boxSound = new SoundClip("data/sounds/tnt_hit.wav", level.getGame());
@@ -39,6 +40,7 @@ public class TNT {
             }
         }
 
+        // sound of the fuse befor the explosion
         if (fuseSound == null) {
             try {
                 fuseSound = new SoundClip("data/sounds/fuse.wav", level.getGame());
@@ -57,6 +59,7 @@ public class TNT {
         if (state == State.STABLE) {
             fuseSound.play();
             state = State.FUSE;
+            // use a timer befor the explosion
             timer = new Timer(100, new TNTTimer(level, this));
             timer.start();
         }

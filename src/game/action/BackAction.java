@@ -5,6 +5,9 @@ import game.Game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Action to go back from options menu to level
+ */
 public class BackAction implements ActionListener {
 
     Game game;
@@ -14,9 +17,10 @@ public class BackAction implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        game.getFrame().setVisible(true);
-        game.getFrame().setLocation(game.getOptionsFrame().getLocation());
-        game.getOptionsFrame().setVisible(false);
+        // Swap back to level
+        game.swapFrames();
+
+        // Resume level
         game.getLevel().start();
     }
 }

@@ -7,9 +7,12 @@ import game.io.HighScoreReader;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * Highscores page
+ */
 public class HighScores {
     private JPanel mainPanel;
-    private JButton back;
+    private JButton main;
     private JTable scoresTable;
     private Game game;
     private  HighScoreReader reader;
@@ -19,11 +22,16 @@ public class HighScores {
     }
 
     private void createUIComponents() throws IOException {
+        // Get high scores from txt
         reader = new HighScoreReader("data/highscores.txt");
-        back = new JButton("BACK");
-        back.addActionListener(new MainAction(game));
+
+        // Add to scores JTable
         String[] cols = {"name", "score"};
         scoresTable = new JTable(reader.readScores(), cols);
+
+        // Back to main menu
+        main = new JButton("MAIN MENU");
+        main.addActionListener(new MainAction(game));
     }
 
     public JPanel getMainPanel() {

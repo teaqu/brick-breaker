@@ -28,10 +28,6 @@ public class Brick extends StaticBody {
     public Brick(GameLevel gameLevel, int brickLevel) {
         super(gameLevel, brickShape);
         this.setBrickLevel(brickLevel);
-    }
-
-    public Brick(GameLevel gameLevel) {
-        this(gameLevel, 0);
 
         if (brickSound == null) {
             try {
@@ -40,6 +36,11 @@ public class Brick extends StaticBody {
                 System.out.println(e);
             }
         }
+
+    }
+
+    public Brick(GameLevel gameLevel) {
+        this(gameLevel, 0);
     }
 
     public int getBrickLevel() {

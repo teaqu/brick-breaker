@@ -11,6 +11,7 @@ public class MainMenu extends ImagePanel {
     private JButton play;
     private JButton options;
     private JButton highScores;
+    private JButton levels;
     private JButton load;
     private JButton quit;
 
@@ -19,6 +20,7 @@ public class MainMenu extends ImagePanel {
         play = new JButton("PLAY");
         options = new JButton("OPTIONS");
         highScores = new JButton("HIGH SCORES");
+        levels = new JButton("LEVELS");
         load = new JButton("LOAD");
         quit = new JButton("QUIT");
 
@@ -36,11 +38,13 @@ public class MainMenu extends ImagePanel {
         add(play, gbc);
         add(options, gbc);
         add(highScores, gbc);
+        add(levels, gbc);
         add(load, gbc);
         add(quit, gbc);
         play.addActionListener(new PlayAction(game));
         options.addActionListener(new OptionsAction(game));
         highScores.addActionListener(new HighScoresAction(game));
+        levels.addActionListener(new LevelsAction(game));
         load.addActionListener(new LoadAction(game));
         quit.addActionListener(new QuitAction());
     }

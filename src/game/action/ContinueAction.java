@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Save and continue on to HighScores page after game over.
+ */
 public class ContinueAction implements ActionListener {
 
     private Game game;
@@ -20,23 +23,23 @@ public class ContinueAction implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+
+        // Write highscores
         HighScoreWriter highScoreWriter = new HighScoreWriter("data/highscores.txt");
         try {
             highScoreWriter.writeHighScore(
-                    endGame.getName().getText(),
+                    endGame.getName().getText(), // Name entered by user
                     game.getStats().getScore()
             );
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
 
-        // We create a new highscores with new data
-        // Updating the JTable is difficult so easier to create new panel
-        game.setHighScores(new HighScores(game));
+        // Redirect to highscores page
         game.resetFrame();
-        game.getFrame().add(game.getHighScores().getMainPanel());
+        game.getFrame().add(new HighScores(game).getMainPanel());
 
-        // Clear the game
+        // Clear the game so we can play again with fresh data
         game.reset();
     }
 

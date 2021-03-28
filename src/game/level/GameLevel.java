@@ -20,21 +20,37 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+/**
+ * Base class for all the levels
+ */
 public abstract class GameLevel extends World {
     private Game game;
+
+    // The player
     private Board board;
+
+    // Balls within the level
     private List<Ball> balls;
+
+    // Level music
     private SoundClip music;
+
+    // Level background image
     private Image background;
+
+    // Text colour for level. Can change this so it is more readable
+    // depending on the background
     private Color textColour = new Color(0);
+
+    // For tracking the ball within the level. This allows us to follow the
+    // ball out of the game view.
     private BallTracker ballTracker;
+
+    // So we can restart the level and reset the stats
     private String startStats;
 
-    /**
-     * These bodies need to be destroyed for the level to complete.
-     */
+    // These bodies need to be destroyed for the level to complete. (remaining)
     private List<Body> consumableBodies;
 
     public GameLevel(Game game) {
@@ -43,9 +59,12 @@ public abstract class GameLevel extends World {
         board = new Board(this);
         consumableBodies = new ArrayList<>();
         balls = new ArrayList<>();
+
+        // Set current level and export stats in case of restart
         game.getStats().setLevel(getLevel());
         startStats = game.getStats().exportStats();
 
+        // Set board and create a new ball
         board.setPosition(new Vec2(7.5f, -10));
         BoardTracker boardTracker = new BoardTracker(this, board);
         this.addStepListener(boardTracker);
@@ -56,18 +75,28 @@ public abstract class GameLevel extends World {
         return board;
     }
 
+    /**
+     * Create a new ball
+     * This happens when a laser destroys the current ball
+     */
     public void newBall() {
         Ball ball = new Ball(this);
         BallEncounter ballEncounter = new BallEncounter(this, ball);
         ball.addCollisionListener(ballEncounter);
         balls.add(ball);
+
+        // Set ball location near board and give it some velocity
         ball.setPosition(new Vec2(board.getPosition().x, board.getPosition().y + 1));
         ball.applyImpulse(new Vec2((float) Math.random() * 2 - 1, 0));
+
+        // Track ball
         if (ballTracker == null) {
             ballTracker = new BallTracker(this, getBalls().get(0));
         } else {
             ballTracker.setBall(ball);
         }
+
+        // follow the ball
         addStepListener(ballTracker);
     }
 

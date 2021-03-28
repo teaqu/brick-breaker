@@ -6,6 +6,9 @@ import game.model.body.Brick;
 import game.model.body.Coin;
 import game.level.GameLevel;
 
+/**
+ * Listen for any bricks that are destroyed
+ */
 public class BrickDestruction extends Listener implements DestructionListener {
 
     Brick brick;
@@ -17,9 +20,14 @@ public class BrickDestruction extends Listener implements DestructionListener {
 
     @Override
     public void destroy(DestructionEvent destructionEvent) {
+        // Create a new coin at the brick's position
         Coin coin = new Coin(getLevel());
         coin.setPosition(brick.getPosition());
+
+        // Add score for destroying brick
         getStats().addScore(1);
+
+        // Remove the brick from the level
         getLevel().removeConsumableBody(brick);
     }
 }

@@ -12,11 +12,17 @@ import game.track.BirdTracker;
 import game.track.MonsterTracker;
 import org.jbox2d.common.Vec2;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class Level4 extends GameLevel {
     public Level4(Game game){
         super(game);
         genWalls();
         setMusic("music/passing_time.mp3");
+        setBackground(new ImageIcon("data/images/background4.png").getImage());
+        setTextColour(new Color(0, 255, 0));
+
 
         // Set of 5 bricks
         for (int i = 0; i < 5; i++) {

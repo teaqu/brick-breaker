@@ -9,6 +9,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
+/**
+ * It's a bird
+ */
 public class Bird extends DynamicBody implements Direction {
 
     private float direction;
@@ -35,7 +38,10 @@ public class Bird extends DynamicBody implements Direction {
         super(level, birdShape);
         this.level = level;
         this.direction = Math.random() > 0.5 ? 0.1f : -0.1f;
+
+        // So the bird can fly
         this.setGravityScale(0);
+
         addImage(birdImage);
         addImage(birdImage2);
 
@@ -57,6 +63,9 @@ public class Bird extends DynamicBody implements Direction {
     }
 
     public void kill() {
+        // Make it fall through the map. Don't collide with anything but
+        // walls.
+        // Remove fixture so no collisions. We can detect the walls using sensors.
         setGravityScale(1);
         removeAllImages();
         addImage(deadBirdImage);
