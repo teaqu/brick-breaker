@@ -1,5 +1,8 @@
 # Brick Breaker
+
 City University project based of the BlackBerry game.
+
+<img src="screenshot.jpg" width="500">
 
 ## Credit
 ### Images

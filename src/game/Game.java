@@ -58,7 +58,7 @@ public class Game {
 
         // enable the frame to quit the application
         // when the x button is pressed
-        frame = new JFrame("Basic world");
+        frame = new JFrame("Brick Breaker");
 
         MainMenu mainMenu = new MainMenu(this);
         mainMenu.setPreferredSize(new Dimension(600, 600));
@@ -67,7 +67,7 @@ public class Game {
         // Setup options menu
         optionsMenu = new OptionsMenu(this);
 
-        optionsFrame = new JFrame("Basic world");
+        optionsFrame = new JFrame("Brick Breaker");
         optionsMenu.setPreferredSize(new Dimension(600, 600));
         optionsFrame.add(getOptionsMenu());
 
