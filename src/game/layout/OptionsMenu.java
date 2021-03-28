@@ -1,9 +1,7 @@
 package game.layout;
 
 import game.Game;
-import game.action.BackAction;
-import game.action.MainAction;
-import game.action.RestartAction;
+import game.action.*;
 import game.change.VolumeChange;
 import game.level.GameLevel;
 
@@ -20,6 +18,8 @@ public class OptionsMenu extends JPanel {
     private JLabel soundsLabel;
     private JLabel musicLabel;
     private JButton restartLevel;
+    private JButton saveGame;
+    private JButton loadGame;
 
     public OptionsMenu(Game game) {
         this.game = game;
@@ -49,6 +49,10 @@ public class OptionsMenu extends JPanel {
         musicVolume.addChangeListener(new VolumeChange(game, true));
         restartLevel = new JButton("RESTART LEVEL");
         restartLevel.addActionListener(new RestartAction(game));
+        saveGame = new JButton("SAVE GAME");
+        saveGame.addActionListener(new SaveAction(game));
+        loadGame = new JButton("LOAD GAME");
+        loadGame.addActionListener(new LoadAction(game));
 
         add(title, gbc);
         add(soundsLabel, gbc);
@@ -58,6 +62,8 @@ public class OptionsMenu extends JPanel {
         add(menu, gbc);
         if (game.getLevel() != null) {
             add(restartLevel, gbc);
+            add(loadGame, gbc);
+            add(saveGame, gbc);
             add(back, gbc);
         }
     }

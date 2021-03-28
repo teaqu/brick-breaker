@@ -94,21 +94,31 @@ public class Game {
         optionsFrame.setVisible(false);
     }
 
-    public void goToNextLevel(){
+    public void goToNextLevel() {
         levelComplete.play();
-        if (level instanceof Level1){
-            changeLevel(new Level2(this));
-        } else if (level instanceof Level2) {
-            changeLevel(new Level3(this));
-        } else if (level instanceof Level3) {
-            changeLevel(new Level4(this));
-        } else if (level instanceof Level4) {
-            changeLevel(new Level5(this));
-        } else if (level instanceof Level5) {
-            changeLevel(new Level6(this));
+        GameLevel newLevel = getLevelByNum(level.getLevel() + 1);
+        if (newLevel != null) {
+            changeLevel(newLevel);
         } else {
             gameOver(true);
         }
+    }
+
+    public GameLevel getLevelByNum(int num) {
+        if (num == 1){
+            return new Level1(this);
+        } else if (num == 2){
+            return new Level2(this);
+        } else if (num == 3){
+            return new Level3(this);
+        } else if (num == 4){
+            return new Level4(this);
+        } else if (num == 5){
+            return new Level5(this);
+        } else if (num == 6){
+           return new Level6(this);
+        }
+        return null;
     }
 
     /**
@@ -116,19 +126,8 @@ public class Game {
      * @param level
      */
     public void restartLevel(GameLevel level) {
-        if (level instanceof Level1){
-            changeLevel(new Level1(this));
-        } else if (level instanceof Level2) {
-            changeLevel(new Level2(this));
-        } else if (level instanceof Level3) {
-            changeLevel(new Level3(this));
-        } else if (level instanceof Level4) {
-            changeLevel(new Level4(this));
-        } else if (level instanceof Level5) {
-            changeLevel(new Level5(this));
-        } else {
-            changeLevel(new Level6(this));
-        }
+        stats.importStats(level.getStartStats());
+        changeLevel(getLevelByNum(level.getLevel()));
     }
 
     public void gameOver() {
@@ -170,26 +169,22 @@ public class Game {
         return gameLayout;
     }
 
-    private void changeLevel(GameLevel newLevel) {
-        level.stop();
+    public void changeLevel(GameLevel newLevel) {
+        if (level != null) {
+            level.stop();
+            gameLayout.changeLevel(newLevel);
+        } else {
+            // add the view to a frame (Java top level window)
+            resetFrame();
+            gameLayout = new GameLayout(newLevel);
+            frame.add(gameLayout);
+        }
+        // add the view to a frame (Java top level window)
         level = newLevel;
-        //level now refer to the new level
-        gameLayout.changeLevel(level);
         level.start();
 
         // uncomment this to make a debugging view
 //        JFrame debugView = new DebugViewer(level, 500, 500);
-    }
-
-    public void start() {
-        resetFrame();
-        level = new Level1(this);
-        gameLayout = new GameLayout(level);
-
-        // add the view to a frame (Java top level window)
-        frame.add(gameLayout);
-
-        level.start();
     }
 
     public JFrame getFrame() {

@@ -30,6 +30,7 @@ public abstract class GameLevel extends World {
     private Image background;
     private Color textColour = new Color(0);
     private BallTracker ballTracker;
+    private String startStats;
 
     /**
      * These bodies need to be destroyed for the level to complete.
@@ -42,12 +43,8 @@ public abstract class GameLevel extends World {
         board = new Board(this);
         consumableBodies = new ArrayList<>();
         balls = new ArrayList<>();
-
-        // Set current level in stats using class name
-        // eg Level5 == 5
-        String className = getClass().getSimpleName();
-        int curLevel = Integer.parseInt(className.replaceAll("[\\D]", ""));
-        game.getStats().setLevel(curLevel);
+        game.getStats().setLevel(getLevel());
+        startStats = game.getStats().exportStats();
 
         board.setPosition(new Vec2(7.5f, -10));
         BoardTracker boardTracker = new BoardTracker(this, board);
@@ -199,5 +196,16 @@ public abstract class GameLevel extends World {
 
     public void setTextColour(Color textColour) {
         this.textColour = textColour;
+    }
+
+    // Set current level in stats using class name
+    // eg Level5 == 5
+    public int getLevel() {
+        String levelName = getClass().getName();
+        return Integer.parseInt(levelName.replaceAll("[\\D]", ""));
+    }
+
+    public String getStartStats() {
+        return startStats;
     }
 }

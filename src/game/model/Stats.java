@@ -50,6 +50,7 @@ public class Stats extends Model {
     /**
      * Generate an emoji heart for each life.
      * 0x2764 = heart emoji
+     *
      * @return emoji hearts
      */
     public String getHearts() {
@@ -62,6 +63,18 @@ public class Stats extends Model {
         } else {
             return "";
         }
+    }
+
+    public String exportStats() {
+        return getLevel() + "," + getLives() + "," + getScore() + "," + getRemaining();
+    }
+
+    public void importStats(String statsStr) {
+        String[] statsArr = statsStr.split(",");
+        setLevel(Integer.parseInt(statsArr[0]));
+        setLives(Integer.parseInt(statsArr[1]));
+        setScore(Integer.parseInt(statsArr[2]));
+        setRemaining(Integer.parseInt(statsArr[3]));
     }
 
 }
