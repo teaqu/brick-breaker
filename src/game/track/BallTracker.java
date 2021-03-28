@@ -23,4 +23,8 @@ public class BallTracker extends Listener implements StepListener {
         float position = Math.max(0, ball.getPosition().y - 10);
         getGameView().setCentre(new Vec2(getGameView().getX(), position));
     }
+
+    public void setBall(Ball ball) {
+        this.ball = ball;
+    }
 }

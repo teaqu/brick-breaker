@@ -28,6 +28,7 @@ public abstract class GameLevel extends World {
     private SoundClip music;
     private Image background;
     private Color textColour = new Color(0);
+    private BallTracker ballTracker;
 
     /**
      * These bodies need to be destroyed for the level to complete.
@@ -44,10 +45,7 @@ public abstract class GameLevel extends World {
         board.setPosition(new Vec2(7.5f, -10));
         BoardTracker boardTracker = new BoardTracker(this, board);
         this.addStepListener(boardTracker);
-
         newBall();
-
-        addStepListener(new BallTracker(this, getBalls().get(0)));
     }
 
     public Board getBoard() {
@@ -61,6 +59,12 @@ public abstract class GameLevel extends World {
         balls.add(ball);
         ball.setPosition(new Vec2(board.getPosition().x, board.getPosition().y + 1));
         ball.applyImpulse(new Vec2((float) Math.random() * 2 - 1, 0));
+        if (ballTracker == null) {
+            ballTracker = new BallTracker(this, getBalls().get(0));
+        } else {
+            ballTracker.setBall(ball);
+        }
+        addStepListener(ballTracker);
     }
 
     public void addConsumableBody(Body body) {
