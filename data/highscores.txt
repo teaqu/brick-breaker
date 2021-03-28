@@ -1,2 +1,12 @@
 Bill,55
 Calum,105
+test!!,0
+g,0
+gagag,1
+aaaaaaaaaaaaaa,1
+rrr,0
+ooo,0
+ddd,1
+yay,11
+,16
+,0

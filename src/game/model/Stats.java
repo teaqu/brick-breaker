@@ -4,7 +4,7 @@ public class Stats extends Model {
     private int score = 0;
     private int level = 1;
     private int remaining = 0;
-    private int lives = 3;
+    private int lives = 1;
 
     public void setScore(int score) {
         this.score = score;
@@ -53,11 +53,15 @@ public class Stats extends Model {
      * @return emoji hearts
      */
     public String getHearts() {
-        char[] hearts = new char[lives];
-        for (int i = 0; i < lives; i++) {
-            hearts[i] = Character.toChars(0x2764)[0];
+        if (lives > 0) {
+            char[] hearts = new char[lives];
+            for (int i = 0; i < lives; i++) {
+                hearts[i] = Character.toChars(0x2764)[0];
+            }
+            return String.valueOf(hearts);
+        } else {
+            return "";
         }
-        return String.valueOf(hearts);
     }
 
 }

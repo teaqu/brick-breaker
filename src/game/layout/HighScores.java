@@ -12,13 +12,14 @@ public class HighScores {
     private JButton back;
     private JTable scoresTable;
     private Game game;
+    private  HighScoreReader reader;
 
     public HighScores(Game game) {
         this.game = game;
     }
 
     private void createUIComponents() throws IOException {
-        HighScoreReader reader = new HighScoreReader("data/highscores.txt");
+        reader = new HighScoreReader("data/highscores.txt");
         back = new JButton("BACK");
         back.addActionListener(new MainAction(game));
         String[] cols = {"name", "score"};

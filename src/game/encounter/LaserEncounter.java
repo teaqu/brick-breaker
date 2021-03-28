@@ -27,6 +27,7 @@ public class LaserEncounter extends Listener implements CollisionListener {
             getStats().setLives(--lives);
             if (lives < 1) {
                 getGame().gameOver();
+                return;
             }
 
             // Put new ball on map

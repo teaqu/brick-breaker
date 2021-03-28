@@ -125,8 +125,10 @@ public class Game {
     }
 
     public void gameOver() {
-        System.out.println("Game over.");
-        System.exit(0);
+        resetFrame();
+        getLevel().stop();
+        EndGame endGame = new EndGame(this);
+        frame.add(endGame.getMainPanel());
     }
 
     /**
@@ -212,6 +214,10 @@ public class Game {
 
     public HighScores getHighScores() {
         return highScores;
+    }
+
+    public void setHighScores(HighScores highScores) {
+        this.highScores = highScores;
     }
 
     public JFrame getOptionsFrame() {

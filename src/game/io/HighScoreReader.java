@@ -28,8 +28,7 @@ public class HighScoreReader {
                 data.add(line.split(","));
                 line = reader.readLine();
             }
-            // Sort by score
-            data.sort(Comparator.comparing(o -> o[1]));
+            data.sort((o1, o2) -> Integer.valueOf(o2[1]).compareTo(Integer.valueOf(o1[1])));
             return data.toArray(new Object[data.size()][]);
         } finally {
             if (reader != null) {
