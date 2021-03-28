@@ -102,6 +102,10 @@ public class Game {
             changeLevel(new Level3(this));
         } else if (level instanceof Level3) {
             changeLevel(new Level4(this));
+        } else if (level instanceof Level4) {
+            changeLevel(new Level5(this));
+        } else if (level instanceof Level5) {
+            changeLevel(new Level6(this));
         } else {
             System.out.println("Well done! Game complete.");
             System.exit(0);

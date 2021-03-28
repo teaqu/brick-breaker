@@ -20,6 +20,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public abstract class GameLevel extends World {
     private Game game;
@@ -41,6 +42,12 @@ public abstract class GameLevel extends World {
         board = new Board(this);
         consumableBodies = new ArrayList<>();
         balls = new ArrayList<>();
+
+        // Set current level in stats using class name
+        // eg Level5 == 5
+        String className = getClass().getSimpleName();
+        int curLevel = Integer.parseInt(className.replaceAll("[\\D]", ""));
+        game.getStats().setLevel(curLevel);
 
         board.setPosition(new Vec2(7.5f, -10));
         BoardTracker boardTracker = new BoardTracker(this, board);
